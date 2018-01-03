@@ -1,2 +1,7 @@
-# iredmail-enhanced-install
-iRedMail enhanced install
+# iredmail enhanced install
+
+Simple shell scripts to install and personalize iRedMail
+
+## Current features
+
+ - 

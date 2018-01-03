@@ -1,0 +1,5 @@
+# Base config file
+config
+
+# Ignore netbeans
+/nbproject
