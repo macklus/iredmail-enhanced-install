@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# Check domains and fix DKIM if they not exists
+#
+
+DOMAINS=`echo "SELECT domain FROM domain;" | mysql --defaults-file=/root/.my.cnf-vmail --database=vmail -s`
+
+for dom in $DOMAINS
+do
+	echo -n " - $dom..."
+	if [ ! -e /var/lib/dkim/$dom.pem ]
+	then
+		echo -n "Generating..."
+		t=`amavisd-new genrsa /var/lib/dkim/$dom.pem 1024`
+		t=`chown amavis:amavis /var/lib/dkim/$dom.pem`
+		t=`chmod 0400 /var/lib/dkim/$dom.pem`
+	fi
+done
